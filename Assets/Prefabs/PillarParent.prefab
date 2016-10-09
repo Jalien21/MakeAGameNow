@@ -39,9 +39,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010699322280}
   - 114: {fileID: 114000010230376010}
-  - 114: {fileID: 114000013906389074}
   - 114: {fileID: 114000010816125308}
   - 114: {fileID: 114000010844807008}
+  - 114: {fileID: 114000011082258952}
   m_Layer: 0
   m_Name: PillarParent
   m_TagString: Untagged
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalScale: {x: 1, y: 10, z: 1}
-  time: 10
+  time: 3
 --- !u!114 &114000010816125308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyValue: -20
---- !u!114 &114000013906389074
+--- !u!114 &114000011082258952
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -172,11 +172,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012606618236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f1d5c10f3a210c49a0134a47738926f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a60140ba8f8b17458ae78a8e84580ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: -10}
-  speed: 10
+  direction: {x: 0, y: 0, z: -1}
 --- !u!136 &136000011788865494
 CapsuleCollider:
   m_ObjectHideFlags: 1
