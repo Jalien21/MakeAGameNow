@@ -3,53 +3,100 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    private static GameManager _instance;
 
+    public static GameManager Instance
+    {
+        get
+        {
+            if(_instance != null)
+            {
+                return _instance;
+            }
+            else
+            {
+                GameObject gameManager = new GameObject("GameManager");
+                _instance = gameManager.AddComponent<GameManager>();
+                return _instance;
+            }
+        }
+    }
+     
     public float pointsPerUnitTraveled = 1.0f;
     public float gameSpeed = 10.0f;
+    public string titleScreenName = "TitleScreen";
+
+    [HideInInspector]
+    public int previousScore = 0;
 
     private float score = 0.0f;
     private static float highScore = 0.0f;
     private bool gameOver = false;
     private bool hasSaved = false;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
-        Instance = this;
+        if(_instance != this)
+        {
+            if(_instance == null)
+            {
+                _instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
         LoadHighScore();
-
+        DontDestroyOnLoad(gameObject);  //by default, everything is destroyed between scenes
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (GameObject.FindGameObjectWithTag("Player") == null)
+        if(Application.loadedLevelName != titleScreenName)
         {
-            gameOver = true;
-            if (gameOver)
+            if(GameObject.FindGameObjectWithTag("Player") == null)
             {
-                if (!hasSaved)
+                gameOver = true;
+                if(gameOver)
                 {
-                    SaveHighScore();
-                    hasSaved = true;
+                    if(!hasSaved)
+                    {
+                        SaveHighScore();
+                        previousScore = (int)score;
+                        hasSaved = true;
+                    }
+                    if(Input.anyKeyDown)
+                    {
+                        Application.LoadLevel(titleScreenName);
+                    }
                 }
-                if (Input.anyKeyDown)
+            }
+
+            if(!gameOver)
+            {
+                score += pointsPerUnitTraveled * gameSpeed * Time.deltaTime;
+                if(score > highScore)
                 {
-                    Application.LoadLevel(Application.loadedLevel);
+                    highScore = score;
                 }
             }
         }
-
-        if(!gameOver)
+        else
         {
-            score += pointsPerUnitTraveled * gameSpeed * Time.deltaTime;
-            if(score > highScore)
-            {
-                highScore = score;
-            }
+            //Reset stuff for next game
+            ResetGame();
         }
 	}
+
+    void ResetGame()
+    {
+        score = 0.0f;
+        gameOver = false;
+        hasSaved = false;
+    }
 
     void LoadHighScore()
     {
@@ -63,13 +110,16 @@ public class GameManager : MonoBehaviour
 
     void OnGUI()
     {
-        int currentScore = (int)score;
-        int currentHighScore = (int)highScore;
-        GUILayout.Label("Score: " + currentScore.ToString());
-        GUILayout.Label("High Score: " + currentHighScore.ToString());
-        if (gameOver == true)
+        if(Application.loadedLevelName != titleScreenName)
         {
-            GUILayout.Label ("Game Over! Press any key to reset!");
+            int currentScore = (int)score;
+            int currentHighScore = (int)highScore;
+            GUILayout.Label("Score: " + currentScore.ToString());
+            GUILayout.Label("High Score: " + currentHighScore.ToString());
+            if(gameOver == true)
+            {
+                GUILayout.Label("Game Over! Press any key to quit!");
+            }
         }
     }
 }
