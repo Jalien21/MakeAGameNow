@@ -147,6 +147,7 @@ GameObject:
   - 23: {fileID: 592303916}
   - 114: {fileID: 592303920}
   - 114: {fileID: 592303921}
+  - 114: {fileID: 592303922}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -239,6 +240,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+--- !u!114 &592303922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 592303915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d20f79d51d0f614d845f796224178a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cycleTime: 30
+  saturation: 1
+  brightness: 1
+--- !u!1 &637039587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 637039589}
+  - 114: {fileID: 637039588}
+  m_Layer: 0
+  m_Name: SpecialFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &637039588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 637039587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf09744cd7b0764093863949f627bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cycleTime: 15
+  saturation: 1
+  brightness: 1
+--- !u!4 &637039589
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 637039587}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5669801, y: 35.5958, z: 5.2748632}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &1061609395
 GameObject:
   m_ObjectHideFlags: 0
